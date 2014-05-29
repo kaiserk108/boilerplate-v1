@@ -1,0 +1,126 @@
+@import "compass/typography/vertical_rhythm";
+
+$base-font-size:                  16px;       // 1em
+$base-line-height:                6px;       
+$leading:                         4;
+@include establish-baseline;
+
+// Heading sizes.
+$h1: 49px;
+$h2: 39px;
+$h3: 31px;
+$h4: 25px;
+$h5: 20px;
+$h6: 16px;
+$headings: $h1, $h2, $h3, $h4, $h5, $h6;
+
+body {
+  font-family: $base-font-family;
+  color: $base-font-color;
+  @include adjust-leading-to($leading);
+  font-size: 100%;
+  background: $base-body-color;
+  @media (min-width: 45em) {
+    font-size: 110%;
+  }
+  @media (min-width: 63em) {
+    font-size: 120%;
+  }
+  @media (min-width: 81em) {
+    font-size: 150%;
+  }
+}
+
+p { 
+    @include rhythm(0, 0, 0, $leading, $base-font-size);
+    @include adjust-font-size-to($base-font-size);
+  }
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+// Loop over each heading, h1-h6, and setup our
+// font-size, line-height, and padding.
+@for $i from 1 through 6 {
+  h#{$i} {
+    @include adjust-font-size-to( nth($headings, $i) );
+    @include rhythm($leading, 0, 0, $leading, nth($headings, $i) );
+  }
+}
+
+a {
+  color: $base-link-color;
+  text-decoration: none;
+  @include transition(color 0.1s linear);
+
+  &:hover {
+    color: $hover-link-color;
+  }
+
+  &:active, &:focus {
+    color: $hover-link-color;
+    outline: none;
+  }
+}
+
+hr {
+  border-bottom: 1px solid $base-border-color;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin: rhythm($leading) 0;
+}
+
+img {
+  margin: 0;
+  max-width: 100%;
+}
+
+abbr, acronym {
+  border-bottom: 1px dotted $base-border-color;
+  cursor: help;
+}
+
+address {
+  display: block;
+  margin: 0 0 (rhythm($leading) / 2);
+}
+
+hgroup {
+  margin-bottom: rhythm($leading) / 2;
+}
+
+del {
+  color: lighten($base-font-color, 15);
+}
+
+blockquote {
+  border-left: 2px solid $base-border-color;
+  color: lighten($base-font-color, 15);
+  //@include rhythm($leading, 0, $leading, $leading / 2);
+  margin: rhythm($leading) 0;
+  padding-left: rhythm($leading);
+
+  p {
+    @include adjust-font-size-to(31px);
+  }
+}
+
+cite {
+  color: lighten($base-font-color, 25);
+  font-style: italic;
+
+  &:before {
+    content: '\2014 \00A0';
+  }
+}
+
+pre{
+  //@include rhythm($leading, $leading, $leading, $leading);  
+  padding: rhythm($leading);
+  margin:  rhythm($leading) 0;
+  font-family: $monospace; 
+  @include adjust-font-size-to($base-font-size);
+  background: rgba(black, 0.05);
+}

@@ -1,0 +1,17 @@
+.wrapper {
+	@include outer-container;
+	word-wrap: break-word;
+}
+
+ul.default {
+	@extend %default-ul;
+}
+
+ol.default {
+	@extend %default-ol;
+}
+
+.button { @extend %button; }
+.error { @extend %flash-error; }
+.notice { @extend %flash-notice; }
+.success { @extend %flash-success; }

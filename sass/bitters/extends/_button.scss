@@ -1,0 +1,9 @@
+%button {
+  @include button($button-style, $base-accent-color);
+  @include background-image(none);
+  -webkit-font-smoothing: antialiased;
+  @include adjust-font-size-to($base-font-size);
+  //padding: rhythm($leading) / 4;
+  font-weight: bold;
+  line-height: 1em;
+}
